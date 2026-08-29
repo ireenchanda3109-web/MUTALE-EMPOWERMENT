@@ -47,23 +47,30 @@ document.getElementById("form").onsubmit = async (e) => {
     return;
   }
 
-  document.getElementById("result").innerHTML = `
-    <h2>Congratulations!</h2>
-    <p>Your application has been successfully submitted.</p>
-    <p>Your details have been received for review.</p>
-    <p>Eligible applicants may qualify for <strong>ZMW 30,000</strong>
-    in accordance with the programme's verified eligibility and award rules.</p>
-    <p><strong>Application Reference:</strong> ${j.ref || "Received"}</p>
-  `;
+    document.getElementById("result").innerHTML = `
+  <h2>Congratulations!</h2>
+  <p>Your application has been successfully submitted.</p>
+  <p>Your details have been received and are being processed according to the programme's eligibility requirements.</p>
+  <p><strong>Application Reference:</strong> ${j.ref || "Pending"}</p>
+`;
 
-  document.getElementById("result").style.display = "block";
-  e.target.reset();
+document.getElementById("result").style.display = "block";
+
+e.target.reset();
 };
 </script>
+    
+    
+  
+    
+
+
+  
+ 
 
  
  
  
  
 
-</script></body></html>
+
