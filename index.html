@@ -29,10 +29,41 @@ body{margin:0;font-family:Arial;background:#f4f7f9;color:#17212b}header{backgrou
   WhatsApp
 </a>
 <script>
-document.getElementById("form").onsubmit=async e=>{
- e.preventDefault(); const data=Object.fromEntries(new FormData(e.target));
- const r=await fetch("/api/applications",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
- const j=await r.json(); if(!r.ok)return alert(j.error||"Submission failed");
- document.getElementById("ref").textContent=j.reference;document.getElementById("formCard").classList.add("hidden");document.getElementById("result").classList.remove("hidden");
+document.getElementById("form").onsubmit = async (e) => {
+  e.preventDefault();
+
+  const data = Object.fromEntries(new FormData(e.target));
+
+  const r = await fetch("/api/application", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  });
+
+  const j = await r.json();
+
+  if (!r.ok) {
+    alert(j.error || "Application could not be submitted.");
+    return;
+  }
+
+  document.getElementById("result").innerHTML = `
+    <h2>Congratulations!</h2>
+    <p>Your application has been successfully submitted.</p>
+    <p>Your details have been received for review.</p>
+    <p>Eligible applicants may qualify for <strong>ZMW 30,000</strong>
+    in accordance with the programme's verified eligibility and award rules.</p>
+    <p><strong>Application Reference:</strong> ${j.ref || "Received"}</p>
+  `;
+
+  document.getElementById("result").style.display = "block";
+  e.target.reset();
 };
+</script>
+
+ 
+ 
+ 
+ 
+
 </script></body></html>
