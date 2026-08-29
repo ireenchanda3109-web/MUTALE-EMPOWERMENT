@@ -25,38 +25,63 @@ body{margin:0;font-family:Arial;background:#f4f7f9;color:#17212b}header{backgrou
     WhatsApp 2
   </a>
 </div>
-</main><a href="https://wa.me/254747985615" target="_blank">
-  WhatsApp
-</a>
-<script>
-document.getElementById("form").onsubmit = async (e) => {
+
+
+
+document.getElementById("form").onsubmit = async function(e) {
   e.preventDefault();
 
-  const data = Object.fromEntries(new FormData(e.target));
+  const form = e.target;
+  const result = document.getElementById("result");
 
-  const r = await fetch("/api/application", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(data)
-  });
+  result.innerHTML = `
+    <h2>Submitting Application...</h2>
+    <p>Please wait while your application is being submitted.</p>
+  `;
+  result.style.display = "block";
 
-  const j = await r.json();
+  const data = Object.fromEntries(new FormData(form).entries());
 
-  if (!r.ok) {
-    alert(j.error || "Application could not be submitted.");
-    return;
+  try {
+    const r = await fetch("/api/application", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    const j = await r.json();
+
+    if (!r.ok) {
+      result.innerHTML = `
+        <h2>Application Not Submitted</h2>
+        <p>${j.error || "There was a problem submitting your application."}</p>
+      `;
+      return;
+    }
+
+    result.innerHTML = `
+      <h2>Congratulations!</h2>
+      <p><strong>Your application has been successfully submitted.</strong></p>
+      <p>Your details have been received and are being processed according to the programme's eligibility requirements.</p>
+      <p><strong>Application Reference:</strong> ${j.ref || "Pending"}</p>
+      <p>Final eligibility and any support amount are subject to verification and the programme's official rules.</p>
+    `;
+
+    result.style.display = "block";
+    result.scrollIntoView({ behavior: "smooth" });
+
+    form.reset();
+
+  } catch (error) {
+    result.innerHTML = `
+      <h2>Submission Error</h2>
+      <p>Your application could not be submitted at this time. Please try again.</p>
+    `;
+    result.style.display = "block";
+    console.error(error);
   }
-
-    document.getElementById("result").innerHTML = `
-  <h2>Congratulations!</h2>
-  <p>Your application has been successfully submitted.</p>
-  <p>Your details have been received and are being processed according to the programme's eligibility requirements.</p>
-  <p><strong>Application Reference:</strong> ${j.ref || "Pending"}</p>
-`;
-
-document.getElementById("result").style.display = "block";
-
-e.target.reset();
 };
 </script>
     
