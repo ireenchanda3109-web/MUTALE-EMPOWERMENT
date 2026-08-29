@@ -64,13 +64,96 @@ document.getElementById("form").onsubmit = async function(e) {
       return;
     }
 
-    result.innerHTML = `
-<div style="text-align:center;position:relative;overflow:hidden;padding:20px;">
-  <div style="font-size:45px;">🌸 🌼 🌺 🌸 🌼</div>
-  <h2>🎉 Congratulations! 🎉</h2>
+  result.innerHTML = `
+<style>
+.celebration-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+  overflow: hidden;
+}
+
+.celebration-screen h2 {
+  font-size: 42px;
+  margin: 15px 0;
+  font-weight: 800;
+  position: relative;
+  z-index: 2;
+}
+
+.celebration-screen p {
+  font-size: 18px;
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -30px;
+  font-size: 28px;
+  animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0.8;
+  }
+}
+
+.confetti-piece:nth-child(1) { left: 5%; animation-delay: 0s; }
+.confetti-piece:nth-child(2) { left: 15%; animation-delay: 1s; }
+.confetti-piece:nth-child(3) { left: 25%; animation-delay: 2s; }
+.confetti-piece:nth-child(4) { left: 35%; animation-delay: .5s; }
+.confetti-piece:nth-child(5) { left: 45%; animation-delay: 1.5s; }
+.confetti-piece:nth-child(6) { left: 55%; animation-delay: 2.5s; }
+.confetti-piece:nth-child(7) { left: 65%; animation-delay: .8s; }
+.confetti-piece:nth-child(8) { left: 75%; animation-delay: 1.8s; }
+.confetti-piece:nth-child(9) { left: 85%; animation-delay: .3s; }
+.confetti-piece:nth-child(10) { left: 95%; animation-delay: 2.2s; }
+</style>
+
+<div class="celebration-screen">
+
+  <div class="confetti-piece">🎉</div>
+  <div class="confetti-piece">🌸</div>
+  <div class="confetti-piece">🎊</div>
+  <div class="confetti-piece">🌼</div>
+  <div class="confetti-piece">🌺</div>
+  <div class="confetti-piece">🎉</div>
+  <div class="confetti-piece">🌸</div>
+  <div class="confetti-piece">🎊</div>
+  <div class="confetti-piece">🌼</div>
+  <div class="confetti-piece">🌺</div>
+
+  <div style="font-size:60px;position:relative;z-index:2;">🎉🌸🎊</div>
+
+  <h2>CONGRATULATIONS!</h2>
+
   <p><strong>Your application has been successfully submitted.</strong></p>
+
   <p>Your details have been received and are being processed.</p>
+
   <p><strong>Application Reference:</strong> ${j.ref}</p>
+
+  <p>Final eligibility and any support amount are subject to review.</p>
+
+  <div style="font-size:50px;position:relative;z-index:2;">🌷🌼🌺</div>
+
+</div>
+`;
   <p>Final eligibility and any support amount are subject to review.</p>
   <div style="font-size:40px;">🌷 🌸 🌺 🌼 🌷</div>
 </div>
