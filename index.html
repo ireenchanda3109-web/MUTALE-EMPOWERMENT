@@ -61,7 +61,13 @@ document.getElementById("form").onsubmit = async function(e) {
       `;
       return;
     }
-window.location.href = "congratulations.html?ref=" + encodeURIComponent(j.ref);
+result.innerHTML = `
+  <h2>CONGRATULATIONS!</h2>
+  <p><strong>Your application has been successfully submitted.</strong></p>
+  <p>Your details have been received and are being processed.</p>
+  <p><strong>Application Reference:</strong> ${j.ref}</p>
+  <p>Final eligibility and any support amount are subject to review.</p>
+`;
   result.innerHTML = `
 <style>
 .celebration-screen {
