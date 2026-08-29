@@ -17,8 +17,10 @@ body{margin:0;font-family:Arial;background:#f4f7f9;color:#17212b}header{backgrou
 <div class="full"><button>Submit Application</button></div></div></form></section>
 <section id="result" class="card result hidden"><h2>Application Received</h2><p>Reference number:</p><div id="ref" class="ref"></div><p>Your application has been submitted for review.</p><button onclick="location.reload()">New Application</button></section>
 
-<section class="card contact-card"><h2>Contact Us</h2><p>If you need help with your application, choose a WhatsApp contact below.</p><div class="contacts"><a href="https://wa.me/254799682628" target="_blank" rel="noopener noreferrer">WhatsApp 1</a><a href="https://wa.me/254747985615" target="_blank" rel="noopener noreferrer">WhatsApp 2</a><a href="https://wa.me/254703650004" target="_blank" rel="noopener noreferrer">WhatsApp 3</a></div></section>
-</main>
+<section class="card contact-card"><h2>Contact Us</h2><p>If you need help with your application, choose a WhatsApp contact below.</p><div class="contacts"><target="_blank" rel="noopener noreferrer">WhatsApp 1</a><a href="https://wa.me/254747985615" target="_blank" rel="noopener noreferrer">WhatsApp 2</a><a href="https://wa.me/254703650004" target="_blank" rel="noopener noreferrer">WhatsApp 3</a></div></section>
+</main><a href="https://wa.me/254747985615" target="_blank">
+  WhatsApp
+</a>
 <script>
 document.getElementById("form").onsubmit=async e=>{
  e.preventDefault(); const data=Object.fromEntries(new FormData(e.target));
