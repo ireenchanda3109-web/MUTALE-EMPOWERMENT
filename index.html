@@ -63,7 +63,7 @@ document.getElementById("form").onsubmit = async function(e) {
       `;
       return;
     }
-window.location.href = "congratulations.html";
+window.location.href = "congratulations.html?ref=" + encodeURIComponent(j.ref);
   result.innerHTML = `
 <style>
 .celebration-screen {
